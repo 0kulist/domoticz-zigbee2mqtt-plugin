@@ -164,7 +164,7 @@ class BasePlugin:
 
             if message['type'] == 'device_connected' or message['type'] == 'device_removed':
                 self.publishToMqtt('bridge/config/devices', '')
-            elif message['type'] == 'pairing' and message['message'] == 'interview_successful':
+            elif message['type'] == 'pairing' and message == 'interview_successful':
                 self.publishToMqtt('bridge/config/devices', '')
                 
             if message['type'] == 'ota_update':
