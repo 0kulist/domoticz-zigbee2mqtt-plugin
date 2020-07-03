@@ -1,3 +1,17 @@
+Note: Fix the bug when domoticz-zigbee2mqtt-plugin skips addition of new device due to incomplete model information on join zigbee network event with the message: <b>doesn't have "model" attribute, skipped</b>.
+
+<b>Insert after the following code</b> (line 166, file plugin.py)
+
+```
+            if message['type'] == 'device_connected' or message['type'] == 'device_removed':
+                self.publishToMqtt('bridge/config/devices', '')
+```                
+ <b>this code:</b>
+``` 
+            elif message['type'] == 'pairing' and message == 'interview_successful':
+                self.publishToMqtt('bridge/config/devices', '')
+```
+
 # Zigbee2MQTT - Domoticz Python Plugin
 Python plugin for Domoticz to add integration with [zigbee2mqtt](https://github.com/Koenkk/zigbee2mqtt) project
 
